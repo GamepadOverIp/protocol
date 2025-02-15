@@ -46,7 +46,7 @@ The `Joystick` is a data type that represents the state of a joystick. It is fou
 
 Each sub-section describes a gamepad. The title of the sub-section is the name of the gamepad and the identifier of the gamepad type.
 
-### 2.3.2. PowerA Enhanced Wired Controller for Nintendo Switch - `0x01`
+### 2.3.1. PowerA Enhanced Wired Controller for Nintendo Switch - `0x01`
 
 #### Data
 
