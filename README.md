@@ -1,6 +1,6 @@
 # 📜 Protocol
 
-The protocol specifications is a document that describes the communication between the client and the server.
+The protocol specification is a document that describes the communication between the client and the server.
 
 The repository contains the following files:
 
