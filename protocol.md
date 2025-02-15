@@ -53,8 +53,8 @@ Each sub-section describes a gamepad. The title of the sub-section is the name o
 | Field           | Type                        | Description                                                                                                                          |
 | --------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | `buttons`       | `UInt32`                    | The state of the buttons. The state of the buttons is represented as a bitfield. Refer to the button mapping below for this gamepad. |
-| `leftJoystick`  | [`Joystick`](#223-joystick) | The state of the left joystick.                                                                                                      |
-| `rightJoystick` | [`Joystick`](#223-joystick) | The state of the right joystick.                                                                                                     |
+| `leftJoystick`  | [`Joystick`](#224-joystick) | The state of the left joystick.                                                                                                      |
+| `rightJoystick` | [`Joystick`](#224-joystick) | The state of the right joystick.                                                                                                     |
 
 #### Button mapping (bitfield)
 
