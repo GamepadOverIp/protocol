@@ -46,7 +46,7 @@ The `Joystick` is a data type that represents the state of a joystick. It is fou
 
 Each sub-section describes a gamepad. The title of the sub-section is the name of the gamepad and the identifier of the gamepad type.
 
-### 2.3.1. PowerA Enhanced Wired Controller for Nintendo Switch - `0x01`
+### 2.3.1. PowerA Enhanced Wired Controller for Nintendo Switch - `0x00`
 
 #### Data
 
@@ -112,11 +112,11 @@ When a client is done with a gamepad, the client should send a [RemoveGamepad](#
 
 ### 3.3.3. Streaming
 
-After the setup of a controller is done, the client can start sending gamepad inputs to the server. However, the streaming flow isn't done over TCP. The client should send [GamepadInput](#344-gamepadinput---0x04) packets over UDP to the server. The server should listen for gamepad inputs on port `17844` (port can be overridden by the user).
+After the setup of a controller is done, the client can start sending gamepad inputs to the server. However, the streaming flow isn't done over TCP. The client should send [GamepadInput](#344-gamepadinput---0x04) packets over UDP to the server. The server should listen for gamepad inputs on port `17843` (port can be overridden by the user).
 
 ## 3.4. Packets
 
-### 3.4.1. `Handshake` - `0x01`
+### 3.4.1. `Handshake` - `0x00`
 
 This serverbound packet is used to initiate the connection.
 
@@ -127,7 +127,7 @@ The server can support multiple versions of the protocol. The client should send
 | `protocolVersion` | [`ProtocolVersion`](#221-protocolversion) | The version of the protocol.                   |
 | `encryption`      | `Boolean`                                 | Whether the client is setup to use encryption. |
 
-### 3.4.2. `HandshakeAck` - `0x02`
+### 3.4.2. `HandshakeAck` - `0x01`
 
 This clientbound packet is sent after a [handshake](#341-handshake---0x01) packet is received.
 
@@ -135,7 +135,7 @@ This clientbound packet is sent after a [handshake](#341-handshake---0x01) packe
 | ------------ | --------- | ---------------------------------- |
 | `encryption` | `Boolean` | Whether encryption should be used. |
 
-### 3.4.3. `AddGamepad` - `0x03`
+### 3.4.3. `AddGamepad` - `0x02`
 
 This serverbound packet is used to add a gamepad to the server.
 
@@ -144,7 +144,7 @@ This serverbound packet is used to add a gamepad to the server.
 | `identifier` | [`UUID`](#222-uuid)               | The identifier of the gamepad. |
 | `type`       | [`GamepadType`](#223-gamepadtype) | The type of the gamepad.       |
 
-### 3.4.4. `GamepadInput` - `0x04`
+### 3.4.4. `GamepadInput` - `0x03`
 
 This serverbound packet is sent by the client regularly to update the state of the gamepad.
 
@@ -155,7 +155,7 @@ Since every type of gamepad have different layouts, capabilities, etc, the `data
 | `identifier` | [`UUID`](#222-uuid) | The identifier of the gamepad. |
 | `data`       | `Byte[]`            | The data of the gamepad.       |
 
-### 3.4.5. `RemoveGamepad` - `0x05`
+### 3.4.5. `RemoveGamepad` - `0x04`
 
 This serverbound packet is used to remove a gamepad from the server.
 
