@@ -94,25 +94,25 @@ Every packet should have the following structure:
 
 The protocol supports encryption. The encryption is done using RSA. The key exchange is done outside the protocol.
 
-It is decided during the handshake whether the communication is going to be encrypted or not. If it is decided that the communication is going to be encrypted, the client should start to send, and expect from the server, encrypted packets directly after the handshake acknowledgment packet is received by the client.
+It is decided during the handshake whether the communication is going to be encrypted or not. If it is decided that the communication is going to be encrypted, the client should start to send, and expect from the server, encrypted packets directly after the [HandshakeAck](#342-handshakeack---0x01) packet is received by the client.
 
-In the handshake packet, the client should send a boolean value that indicates whether the client is set up to use encryption. The server should respond with a boolean value that indicates whether encryption is going to be used. The server can refuse to use encryption even if the client is set up to use encryption. In that case, the client should not send encrypted packets and should not expect encrypted packets from the server.
+In the [Handshake](#341-handshake---0x00) packet, the client should send a boolean value that indicates whether the client is set up to use encryption. The server should respond with a boolean value that indicates whether encryption is going to be used. The server can refuse to use encryption even if the client is set up to use encryption. In that case, the client should not send encrypted packets and should not expect encrypted packets from the server.
 
 ## 3.3. Flows
 
 ### 3.3.1. Handshake
 
-The client should open a TCP connection to the server on port `17843` (port can be overridden by the user). The client should send a [handshake](#341-handshake---0x01) packet to the server. Upon reception, the server should send a [HandshakeAck](#342-handshakeack---0x02) packet to the client.
+The client should open a TCP connection to the server on port `17843` (port can be overridden by the user). The client should send a [Handshake](#341-handshake---0x00) packet to the server. Upon reception, the server should send a [HandshakeAck](#342-handshakeack---0x01) packet to the client.
 
 ### 3.3.2. Setup
 
-Once the handshake is done, the client can set up gamepads. Before starting any streaming, the client should send an [AddGamepad](#343-addgamepad---0x03) packet to the server for each gamepad that the client wants to use. For each gamepad, the client should generate a unique identifier.
+Once the handshake is done, the client can set up gamepads. Before starting any streaming, the client should send an [AddGamepad](#343-addgamepad---0x02) packet to the server for each gamepad that the client wants to use. For each gamepad, the client should generate a unique identifier.
 
-When a client is done with a gamepad, the client should send a [RemoveGamepad](#345-removegamepad---0x05) packet to the server. After this packet, any streaming packet sent with the identifier of the removed gamepad should be ignored by the server.
+When a client is done with a gamepad, the client should send a [RemoveGamepad](#345-removegamepad---0x04) packet to the server. After this packet, any streaming packet sent with the identifier of the removed gamepad should be ignored by the server.
 
 ### 3.3.3. Streaming
 
-After the setup of a controller is done, the client can start sending gamepad inputs to the server. However, the streaming flow isn't done over TCP. The client should send [GamepadInput](#344-gamepadinput---0x04) packets over UDP to the server. The server should listen for gamepad inputs on port `17843` (port can be overridden by the user).
+After the setup of a controller is done, the client can start sending gamepad inputs to the server. However, the streaming flow isn't done over TCP. The client should send [GamepadInput](#344-gamepadinput---0x03) packets over UDP to the server. The server should listen for gamepad inputs on port `17843` (port can be overridden by the user).
 
 ## 3.4. Packets
 
@@ -129,7 +129,7 @@ The server can support multiple versions of the protocol. The client should send
 
 ### 3.4.2. `HandshakeAck` - `0x01`
 
-This clientbound packet is sent after a [handshake](#341-handshake---0x01) packet is received.
+This clientbound packet is sent after a [Handshake](#341-handshake---0x00) packet is received.
 
 | Field        | Type      | Description                        |
 | ------------ | --------- | ---------------------------------- |
